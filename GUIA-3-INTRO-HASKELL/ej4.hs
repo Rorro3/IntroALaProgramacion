@@ -49,4 +49,6 @@ posicionprimerpar (x,y,z) | mod x 2 == 0 = x
 crearpar :: a -> b -> (a,b)
 crearpar a b = (a,b)
 
---h)
+--h) invertir cualquier tipo de tuplas
+invertir :: (a,b) -> (b,a)
+invertir (a,b) = (b,a)
