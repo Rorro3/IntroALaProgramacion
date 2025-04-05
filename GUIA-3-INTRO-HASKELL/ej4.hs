@@ -44,5 +44,9 @@ posicionprimerpar (x,y,z) | mod x 2 == 0 = x
                           | mod z 2 == 0 = z
                           | otherwise = 4
 
+--g) crear par de cualquier tipo
 
+crearpar :: a -> b -> (a,b)
+crearpar a b = (a,b)
 
+--h)
