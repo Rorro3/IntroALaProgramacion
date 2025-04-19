@@ -12,12 +12,14 @@ menorDivisor n = menorDivisorAux n 2
 --y justo en este caso no, porque si o si va a encontrar un numero
 --en el peor caso es primo y es el mismo
 
+--b) es primo
 esPrimo :: Int -> Bool
 esPrimo n = menorDivisor n == n
 
 --lo bueno es que ya puedo ver si un numero es primo
 --lets go encriptacion(???)
 
+--c) coprimos
 --ahora con coprimos deberia hacer una recursion doble hmm
 menorDosNumeros :: Int -> Int -> Int
 menorDosNumeros x y | x >= y = y
@@ -34,3 +36,13 @@ coprimosAux n m i | i > menorDosNumeros n m = True
 
 coprimos :: Int -> Int -> Bool
 coprimos n m = coprimosAux n m 2
+
+--d) enesimo primo
+
+nEsimoPrimo :: Int -> Int
+nEsimoPrimo 1 = 2
+nEsimoPrimo n = primoSiguiente (nEsimoPrimo (n - 1))
+
+primoSiguiente :: Int -> Int
+primoSiguiente n | esPrimo (n + 1) = n + 1
+                 | otherwise = primoSiguiente (n + 1)
