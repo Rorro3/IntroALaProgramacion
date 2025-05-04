@@ -45,3 +45,21 @@ eliminarRepetidos (x:xs) = x : eliminarRepetidos (quitarTodos xs x)
 --lo que tiene la guia es que te da las funciones que necesitas para el siguiente problema
 --cosa que en el parcial es mas dificil porque tiene que pensar uno
 --como en la vida real (?)
+
+----------
+mismosElementos :: (Eq t) => [t] -> Bool
+mismosElementos [] = True
+mismosElementos [x] = True
+mismosElementos (x:y:ys) | x == y = mismosElementos (y:ys) 
+                         | otherwise = False
+
+----------
+capicua :: (Eq t) => [t] -> Bool
+capicua [] = True
+capicua (x:xs) = (x:xs) == reverso (x:xs)
+
+reverso :: [t] -> [t]
+reverso [x] = [x]
+reverso (x:xs) = reverso xs ++ [x]
+
+--recicle la funcion reverso del ej 1
