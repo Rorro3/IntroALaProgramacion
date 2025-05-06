@@ -68,7 +68,7 @@ aplanarConNBlancos [] n = []
 aplanarConNBlancos (x:xs) n = x ++ nEspacios [' '] n ++ aplanarConNBlancos xs n
 
 
---es parecida solo que como los espacios no estoy un numero necesito una forma de cuantifucarlos
+--es parecida solo que como los espacios son un numero necesito una forma de cuantificarlos
 sumarN :: [Int] -> Int -> [Int]
 sumarN [] n = []
 sumarN (x:xs) n = (x+n) : sumarN xs n 
