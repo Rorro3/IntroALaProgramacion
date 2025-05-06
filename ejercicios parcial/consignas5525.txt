@@ -22,3 +22,13 @@ problema laQueMasHayQueCodificar (frase: seq<Char>, mapeo: seq<Char x Char>) : C
     asegura: {res = c donde c es el caracter tal que cuantasVecesHayQueCodificar(c, frase, mapeo) es mayor a cualquier otro caracter perteneciente a frase}
     asegura: {Si existen mas de un caracter que cumple la condicion anterior, devuelve el que aparece primero en frase}
 }
+
+
+problema codificarFrase (frase: seq<Char>, mapeo: seq<Char x Char>) : seq<Char> {
+    requiere: {No hay elementos repetidos entre las primeras componentes de mapeo}
+    requiere: {No hay elementos repetidos entre las segundas componentes de mapeo}
+    requiere: {|frase| > 0}
+    asegura: {|res| = |frase|}
+    asegura: {para todo 0 <= i < |frase| si hayQueCodificar(frase[i], mapeo) = true, entonces res[i] = (mapeo[j])₁, para un j tal que 0 <= j < |mapeo| y (mapeo[j])₀ = frase[i]}
+    asegura: {para todo 0 <= i < |frase| si hayQueCodificar(frase[i], mapeo) = false, entonces res[i] = frase[i]}
+}

@@ -48,4 +48,24 @@ laQueMasHayQueCodificar (frase:xs) mapeo | hayQueCodificar (letraConMasAparicion
 --la mia esta bien pero el jtp lo hizo sin esas funciones auxiliares, solo usando las anteriores del examen
 --moraleja(?) USAR LAS ANTERIORES
  
+---ej4
+--NO ENTENDIA QUE QUERIA QUE HICIERA
+--quiere que si las letras de frase aparecen en mapeo en la primer componente, las reemplaze por la segunda, sino se deja igual
 
+codificarFrase :: [Char] -> [(Char, Char)] -> [Char]
+codificarFrase frase [] = frase --no tengo que cambiar ninguna letra porque el mapeo esta vacio
+codificarFrase [] _ = []
+codificarFrase (letra:xs) mapeo | hayQueCodificar letra mapeo = segundoComponente letra mapeo : codificarFrase xs mapeo
+                                | otherwise = letra : codificarFrase xs mapeo
+                                        
+
+segundoComponente :: Char -> [(Char, Char)] -> Char
+segundoComponente letra [(primer,segundo)] = segundo 
+segundoComponente letra ((primer,segundo):xs) | letra == primer = segundo
+                                              | otherwise = segundoComponente letra xs
+
+--este fue masomenos facil, me costo entender que tenia que hacer
+--la otra funcion es para no andar teniendo que hacer cosas raras con doble recursion dentro de la otra(???)
+
+--ME FALLABAN TODOS LOS TEST POR NO PONER EL CASO EN EL QUE LA FRASE ESTABA VACIA
+--QUE ES RE IMPORTANTE PARA EL CASO BASE PORQUE SINO NO SABE QUE HACER CUANDO YA MIRO TODA LA FRASE
