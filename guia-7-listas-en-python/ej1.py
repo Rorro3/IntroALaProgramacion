@@ -37,6 +37,10 @@ print(pertenece_while_sin_if([1,2,3], 4))
 
 #si qiero usar solo ifs, puedo hacer una funcion recursiva, but that sounds like funcional and i dont have ganas
 
+def pertenecesinnada(lista: list[int], numero: int) -> bool:
+    return numero in lista
+#re lol
+
 #---------------------------------------------
 print("espacio entre ejercicios!!!!!!!!!!")
 #2 quiere que le diga si un int divide a todos los elementos de una lista de ints
@@ -237,5 +241,87 @@ print(tres_iguales_consecutivos([3,3,2,3,3,4,3,3,5]))
 print("espacio entre ejercicios!!!!!!!!!!")
 #12. Recorrer una palabra en formato string y devolver True si ´esta tiene al menos 3 vocales distintas y 
 #False en caso contrario
+vocales: str = "aeiouAEIOU"
 
+def es_vocal(letra: str) -> bool:
+    return letra in vocales
+print(es_vocal("a"))
+#queria ver si servia mi str de vocales
+
+def vocales_distintas(palabra: str) -> bool:
+    contador = 0
+    for letra in palabra:
+        if es_vocal(letra):
+            contador += 1
+    return contador >= 3
+
+print(vocales_distintas("romeo"))
+print(vocales_distintas("rome"))
+
+#---------------------------------------------
+print("espacio entre ejercicios!!!!!!!!!!")
+#13. Recorrer una seq⟨Z⟩ y devolver la posici´on donde inicia la secuencia de n´umeros ordenada m´as larga. 
+#Si hay dos subsecuencias de igual longitud devolver la posici´on donde empieza la primera. La secuencia de entrada es no vac´ıa.
+def pos_secuencia_mas_larga(lista: list[int]) -> int:
+    mejor_inicio = 0
+    mejor_longitud = 1
+
+    inicio_actual = 0
+    longitud_actual = 1
+
+    for i in range(1, len(lista)):
+        if lista[i] >= lista[i - 1]:  
+            longitud_actual += 1 #le pongo la cantidad de numeros ordenados que hay en la primer secuencia
+        else:
+            if longitud_actual > mejor_longitud:
+                mejor_longitud = longitud_actual #la mejor longitud va a ser la mas larga
+                mejor_inicio = inicio_actual #el inicio sigue siendo el 0
+            inicio_actual = i #aca se sale del if, es lo que pasa cuando el if no hace nada (me pone el i como nuevo inicio cuando haga lista[i])
+            longitud_actual = 1 #porque si no es mas grande que la mejor sigue siendo 1
+    if longitud_actual > mejor_longitud: #aca por si justo estaba al final de la lista, si pasa esto no entra ni siquiera en el else
+        mejor_inicio = inicio_actual
+    return mejor_inicio
+
+print(pos_secuencia_mas_larga([1, 2, 2, 1, 3, 4, 5]))  
+print(pos_secuencia_mas_larga([5, 4, 3, 2]))           
+print(pos_secuencia_mas_larga([1, 2, 3, 1, 2, 3]))  
+
+#---------------------------------------------
+print("espacio entre ejercicios!!!!!!!!!!")
+#14, quiere que le diga cuantos numeros impares hay
+#ej: si la lista de n´umeros es [57, 2383, 812, 246], entonces el resultado esperado ser´ıa 5 
+#(los d´ıgitos impares son 5, 7, 3, 3 y 1).
+#voy a hacer una funcion que me parta los numeros primero
+
+def separar_digitos(numero: int) -> list[int]:
+    digitos = []
+    if numero == 0:
+        return [0]
+    while numero > 0:
+        digitos.append(numero % 10)
+        numero = numero // 10
+    return digitos #no me importa si me lo devuelve de atras para adelante
+
+def lista_de_int_separados(secuencia_dada: list[int]) -> list[int]:
+    lista_nueva = []
+    for numero in secuencia_dada:
+        numero_separado = separar_digitos(numero)
+        for digito in numero_separado: #este nuevo for es para que no me devuelva una list[list[int]]
+            lista_nueva.append(digito)
+    return lista_nueva
+
+print(lista_de_int_separados([56,67,69]))
+
+def cantidad_impares(lista: list[int]) -> int:
+    cantidad = 0
+    for digito in lista_de_int_separados(lista):
+        if digito % 2 != 0:
+            cantidad += 1
+    return cantidad
+
+print(cantidad_impares([57, 2383, 812, 246]))
+#yeyyy a la primera!
+    
+#---------------------------------------------
+#fin
 
