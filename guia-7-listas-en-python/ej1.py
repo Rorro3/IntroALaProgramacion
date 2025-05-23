@@ -132,3 +132,110 @@ def ordenados_while(lista: list[int]) -> bool:
 
 print(ordenados_while([1,2,3,4,5]))
 print(ordenados_while([1,2,3,5,4]))
+
+#---------------------------------------------
+print("espacio entre ejercicios!!!!!!!!!!")
+#7 quiere que si la lista es vacia, devuelva -1
+#si la lsta no es vacia, le devuelvo la pisicion del numero mas alto, si se repite, pongo la primera aparicion
+
+def posicion_maximo(lista: list[int]) -> int:
+    if len(lista) == 0:
+            return -1
+    pos_max = 0
+    indice = 1
+    while indice < len(lista):
+        if lista[indice] > lista[pos_max]:
+            pos_max = indice
+        indice += 1
+    return pos_max
+
+print(posicion_maximo([5,3,2,1]))
+print(posicion_maximo([3,4,5,7]))
+print(posicion_maximo([]))
+
+def posicion_maximo_for(lista: list[int]) -> int:
+    if len(lista) == 0:
+        return -1
+    pos_max = 0
+    for indice in range(1, len(lista)):
+        if lista[indice] > lista[pos_max]:
+            pos_max = indice
+    return pos_max
+#lo mismo con un for, osea no tengo que incrementar el indice manualmente, again no puedo poner indice solo, tiene que ir acompaniado por lista[indice]
+#porque es INDICE IN RANGE, no indice in lista
+
+#---------------------------------------------
+print("espacio entre ejercicios!!!!!!!!!!")
+#8 copio y pego pero con posicion_minimo
+def posicion_minimo(lista: list[int]) -> int:
+    if len(lista) == 0:
+        return -1
+    pos_min = 0
+    for indice in range(1, len(lista)):
+        if lista[indice] < lista[pos_min]:
+            pos_min = indice
+    return pos_min
+
+#siempre hay que preguntarse "cual es el caso que de una me termina la funcion?"
+#aca es len(lista) == 0 xd
+#en el bucle me conviene poner que lo reemplace por indice cuando el indice es menor, vuelvo a hacer el bucle con ese nuevo numero
+#si hubiera puesto que si el indice es mayor, no haga nada, tenia que poner un else
+#y generalmente no me conviene tener una parte que "no haga nada"
+
+#---------------------------------------------
+print("espacio entre ejercicios!!!!!!!!!!")
+#9. Dada una lista de palabras (seq⟨seq⟨Char⟩⟩), devolver verdadero si alguna palabra tiene longitud mayor a 7. 
+#Ejemplo: [“termo”, “gato”, “tener”, “jirafas”], devuelve falso.
+def long_mayor_a_siete(lista: list[str]) -> bool:
+    for palabra in lista:
+        if len(palabra) > 7:
+            return True
+    return False
+
+print(long_mayor_a_siete(["termo", "gato", "tener", "jirafas"]))
+print(long_mayor_a_siete(["termo", "gato", "tener", "jirafas", "elefantes"]))
+#aca yo ya se que a la primera con mas de 7 tengo que returnear algo, fin
+#el return false es cuando no returnee nada antes
+
+#---------------------------------------------
+print("espacio entre ejercicios!!!!!!!!!!")
+#10. Dado un texto en formato string, devolver verdadero si es pal´ındromo (se lee igual en ambos sentidos), falso en caso
+#contrario. Las cadenas de texto vac´ıas o con 1 s´olo elemento son pal´ındromo.
+def es_palindromo(palabra: str) -> bool:
+    if len(palabra) == 0 or len(palabra) == 1:
+        return True
+    ultima_letra = len(palabra) - 1 #el indice de la ""ultima letra"""
+    primera_letra = 0 #el indice de la ""primera letra""
+    while primera_letra < ultima_letra: #aca cuando el indice es igual, estaria en la letra del centro; cuando la pasa, ya esta
+        if palabra[primera_letra] != palabra[ultima_letra]: #si la primera letra es != de la ultima, ya esta
+            return False
+        ultima_letra -= 1 #me resta un indice a la segunda ultima letra
+        primera_letra += 1 #me suma un indice a la segunda letra
+    return True #si nunca dio false, es true
+
+print(es_palindromo("romor"))
+print(es_palindromo("romeo"))
+print(es_palindromo("romeemor"))
+
+#---------------------------------------------
+print("espacio entre ejercicios!!!!!!!!!!")
+#11. Recorrer una seq⟨Z⟩ y devolver verdadero si hay 3 n´umeros iguales consecutivos, en cualquier posici´on y 
+#False en caso contrario
+def tres_iguales_consecutivos(lista: list[int]) -> bool:
+    for i in range(0, len(lista) - 2):  # menos 2 para no salir del rango cuando mira i+2 ((puedo sacar el 0, pero mas lindo asi(?)))
+        if lista[i] == lista[i+1] == lista[i+2]:
+            return True
+    return False
+
+#aca si era mas lindo usar for jeje, porque no tengo que incrementar nada a mano, y es lindo porque son consecutivos
+#igual con un while lo unico que tenia que hacer era while i < lista -2
+
+print(tres_iguales_consecutivos([3,3,2,3,3,3,4]))
+print(tres_iguales_consecutivos([3,3,2,3,3,4,3,3,5]))
+
+#---------------------------------------------
+print("espacio entre ejercicios!!!!!!!!!!")
+#12. Recorrer una palabra en formato string y devolver True si ´esta tiene al menos 3 vocales distintas y 
+#False en caso contrario
+
+
